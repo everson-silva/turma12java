@@ -1,5 +1,5 @@
 package lista4;
-import java.util.Random;
+
 import java.util.Scanner;
 
 public class exercicio2 {
@@ -10,12 +10,11 @@ public class exercicio2 {
 		
 		final int l=10 ;
 		int lan[] = new int[l],s=0,m=0,c=0;
-		Random random = new Random();
 		
 		
 		for (int x=0;x<l;x++)
 		{
-			lan[x] = random.nextInt(9);
+			lan[x] = ((int) ((Math.random() * (6)) + 1));
 			System.out.print( "\nValor na posição "+ (x+1)+"º é : "+ lan[x]);
 			s = s+lan[x];
 			if (lan[x]>m)
