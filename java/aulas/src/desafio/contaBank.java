@@ -19,7 +19,7 @@ public class contaBank {
 		do
 		{
 			contador++;
-			System.out.println("Movimentação "+contador+"º de 10 para o dia.");
+			System.out.println("\nMovimentação "+contador+"º de 10 para o dia.");
 			System.out.println("Nesse momento o saldo de sua conta é de R$:"+saldo);
 			System.out.println("E o limite especial de sua conta é de R$:"+saldoLimite);
 
@@ -27,7 +27,7 @@ public class contaBank {
 			System.out.println("Qual movimentação deseja fazer? C - Credito ou D - Debito.");
 			movimentacao= read.next().toUpperCase().charAt(0);
 			
-			while ((movimentacao!='C' | movimentacao!='D'))
+			while ((movimentacao!='C') & (movimentacao!='D'))
 			{
 				System.out.println("ERROR!!! Entre coma letra correta.");
 				System.out.println("Qual movimentação deseja fazer? C - Credito ou D - Debito.");
@@ -39,12 +39,20 @@ public class contaBank {
 				System.out.println("Entre com o valor que deseja depositar: ");
 				mov[contador-1]= read.nextDouble();
 				saldo=saldo+mov[contador-1];
+				 if (mov[contador-1]==0)
+                 {
+                 	contador=contador-1;
+                 }
 			}
 			else
 			{
 				System.out.println("Entre com o valor que deseja retirar: ");
 				mov[contador-1]= read.nextDouble();
-				if(mov[contador-1]>saldo)
+				if (mov[contador-1]==0)
+                {
+                	contador=contador-1;
+                }
+				else if(mov[contador-1]>saldo)
 				{
 					if(mov[contador-1]<=(saldo+saldoLimite))
 					{
@@ -56,7 +64,7 @@ public class contaBank {
 							System.out.println("O que deseja fazer? T - Retirar todo limite, A - Abater somente o valor que falta, M - Retirar manualmente.");
 							pergunta=read.next().toUpperCase().charAt(0);
 							
-							while ((pergunta!='M') | (pergunta!='A') | (pergunta!='T'))
+							while ((pergunta!='M') & (pergunta!='A') & (pergunta!='T'))
 							{
 								System.out.println("ERROR!!! Entre coma letra correta.");
 								System.out.println("O que deseja fazer? T - Retirar todo limite, A - Abater somente o valor que falta, M - Retirar manualmente.");
@@ -85,10 +93,14 @@ public class contaBank {
 							}
 							else 
 							{
-								saldoLimite=(saldoLimite-(mov[contador-1]+saldo));
+								saldoLimite=(saldoLimite-(mov[contador-1]-saldo));
 								saldo=0;
 							}
 						}
+						else
+                        {
+							contador=contador-1;
+                        }
 					}
 					else
 					{
@@ -99,10 +111,18 @@ public class contaBank {
 				{
 					saldo=(saldo-mov[contador-1]);
 				}
-			}			
+			}
+			
+			System.out.println("Você fez \"+contador+\" de 10 movimentações disponiveis para o dia.");
+			System.out.println("Nesse momento o saldo de sua conta é de R$:"+saldo);
+			System.out.println("E o limite especial de sua conta é de R$:"+saldoLimite);
 			
 			System.out.println("DESEJA FAZER OUTRA MOVIMENTAÇÃO? ");
 			pergunta=  read.next().toUpperCase().charAt(0);
+			if(contador==10)
+			{
+				System.out.println("Você atingiu o limite de 10 movimentações diarias!");
+			}
 		}while(contador<10 & pergunta=='S');
 
 	}

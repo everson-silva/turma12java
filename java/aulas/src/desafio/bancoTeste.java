@@ -1,18 +1,18 @@
 package desafio;
 
-import java.io.InputStream;
 import java.util.Scanner;
 
-public class contaBancaria {
+public class bancoTeste {
 
 	public static void main(String[] args) {
         Scanner read = new Scanner(System.in);
         
+        
         double numeroConta;
         //final double agencia;
-        double saldo = 0, saldoLimite=3000.0, pergunta2, auxiliar;
+        double saldo = 0, saldoLimite=3000.0, pergunta2, auxiliar, saldoPoupa=0;
         String cpf, nome;
-        char movimentacao,  resposta1;
+        char movimentacao = 0,  resposta1;
         String cnpj;
         double mov[] = new double[10];
         int contador = 0;   
@@ -32,7 +32,7 @@ public class contaBancaria {
             System.out.println("Boa tarde, digite seu nome: ");
             nome = read.next();
             
-            System.out.printf("Olá Sr(a) %s, agora digite sua conta: ", nome);
+            System.out.printf("Olá Sr(a) %s, agora digite sua conta sem digito: ", nome);
             numeroConta = read.nextDouble();
             
             System.out.print("==================================");   
@@ -48,36 +48,37 @@ public class contaBancaria {
             
             if(menuOpcao==1)
             { 
-                System.out.print("Boa tarde "+nome+" você está em conta corrente!");
-                System.out.print("Saldo até o momento: "+saldoContaCorrente);
+                System.out.print("\nBoa tarde "+nome+" você está em conta corrente!");
+                System.out.print("\nSaldo até o momento: "+saldoContaCorrente);
                 
                 do {
                     contador++;
-                    System.out.println("Movimentação "+contador+"º de 10 para o dia.");
+                    System.out.println("\nMovimentação "+contador+"º de 10 para o dia.");
                     
-                    System.out.println("Qual movimentação deseja fazer? C - Credito ou D - Debito.");
+                    System.out.println("\nQual movimentação deseja fazer? C - Credito ou D - Debito.");
                     movimentacao= read.next().toUpperCase().charAt(0);
                     
                     if (movimentacao=='C')
                     {
-                        System.out.println("Entre com o valor que deseja depositar: ");
+                        System.out.println("\nEntre com o valor que deseja depositar: ");
                         credito= read.nextDouble();
                         saldoContaCorrente=saldoContaCorrente+credito;
+                       
                     }
                     else if (movimentacao=='D')
                     {
-                        System.out.println("Entre com o valor que deseja retirar: ");
+                        System.out.println("\nEntre com o valor que deseja retirar: ");
                         debito = read.nextDouble();
                         saldoContaCorrente=saldoContaCorrente-debito;
                     }
                     else
                     {
-                        System.out.println("ERROR!!! Entre com  C - Credito ou D - Debito. ");
+                        System.out.println("\nERROR!!! Entre com  C - Credito ou D - Debito. ");
                         contador=contador-1;
                     }
                     
                     
-                    System.out.println("DESEJA FAZER OUTRA MOVIMENTAÇÃO? ");
+                    System.out.println("\nDESEJA FAZER OUTRA MOVIMENTAÇÃO? ");
                     resposta1=  read.next().toUpperCase().charAt(0);
                 }while(contador<10 && resposta1=='S');
             
@@ -87,56 +88,93 @@ public class contaBancaria {
                     if (saldoContaCorrente<0)
                     {
                         saldoContaCorrente=0.0;
-                        System.out.print("Saldo Insuficiente!");
+                        System.out.print("\nSaldo Insuficiente!");
                         
                     }
                         //há saldo na conta?
                     if (saldoContaCorrente>=quantiaAsacar)
                     {
-                        System.out.println("O saldo atual: "+saldoContaCorrente);
+                        System.out.println("\nO saldo atual: "+saldoContaCorrente);
                         saldoContaCorrente-=quantiaAsacar;
                         
                     }
                     //caso não tenha saldo na conta
                     else
                     {
-                        System.out.println();
+                        System.out.println("\nVocê não tem saldo suficiente.");
                     }
-                        System.out.println("Deseja um talão de cheque S/N");
+                        System.out.println("\nDeseja um talão de cheque S/N");
                         talaodeCheque=read.next().toUpperCase().charAt(0);
                     if (talaodeCheque=='S')
                     {
-                        System.out.println("Quantos talões deseja adquirir?");
+                        System.out.println("\nQuantos talões deseja adquirir?");
                         quantidadeTalao = read.nextInt();
                         //talaodeCheque=talaodeCheque+quantidadeTalao;
                         for (int x=1;x<=quantidadeTalao;x++)
                         {
-                            System.out.println("Novo talão de cheque: "+numeroDoTalao);
+                            System.out.println("\nNovo talão de cheque: "+numeroDoTalao);
                             numeroDoTalao++;
                         }
-                    }
-            
+                    }   
+                        
                     else
                     {
-                        System.out.println("Você não adiquiriu nenhum talão.");
+                        System.out.println("\nVocê não adiquiriu nenhum talão.");
                     }
-                    
-                }
+                    System.out.println("Fim de programa!");
+                    return;    
+                } 
             
             //MENU CONTA POUPANÇA
             if(menuOpcao==2)
             { 
-                System.out.print("Boa tarde "+nome+" você está em conta poupança!");
-                System.out.print("Saldo até o momento: "+saldo);
+                System.out.print("\nBoa tarde "+nome+" você está em conta poupança!");
+                System.out.print("\nSaldo até o momento: "+saldo);
+                System.out.println("\nQual movimentação deseja fazer? C - Credito ou D - Debito.");
+                movimentacao= read.next().toUpperCase().charAt(0);
                 
-            }
+                
+                if (movimentacao=='C')
+                {
+                    System.out.println("\nEntre com o valor que deseja depositar: ");
+                    credito= read.nextDouble();
+                    saldoPoupa=saldoPoupa+credito;
+                }
+                else if (movimentacao=='D')
+                {
+                    System.out.print("\nEntre com o valor que deseja retirar: ");
+                    debito = read.nextDouble();
+                    saldoPoupa=saldoPoupa-debito;
+                }
+                else
+                {
+                    System.out.println("Entre com  C - Credito ou D - Debito. ");
+                    contador=contador-1;
+                }
+                
+                
+                System.out.println("Digite a data de hoje(Ex: Se for dia 10 do mes 11, digitar 1011:");
+                int niver = read.nextInt();
+               
+                if(niver == 1311) {
+                    System.out.println("Hoje é o dia do aniversario da sua conta! Você recebera 0.5% de saldo de bonus");
+                    saldoPoupa = saldoPoupa + (saldoPoupa * 0.05);
+                    System.out.println("Saldo atualizado! "+saldoPoupa);
+                }
+                else 
+                {
+                    System.out.println("Saldo atulizado "+saldoPoupa);
+                }
+                System.out.println("Fim de programa!");
+                return;  
+            }   
             
             
             //Conta especial
             if(menuOpcao==3)
             { 
-                System.out.print("Boa tarde "+nome+" você está em conta especial!");
-                System.out.print("Saldo até o momento: "+saldo);
+                System.out.print("\nBoa tarde "+nome+" você está em conta especial!");
+                System.out.print("\nSaldo até o momento: "+saldo);
                 
                 char pergunta;
                 do
@@ -161,10 +199,10 @@ public class contaBancaria {
                         System.out.println("Entre com o valor que deseja depositar: ");
                         mov[contador-1]= read.nextDouble();
                         saldo=saldo+mov[contador-1];
-                        if (mov[contador-1]==0)
-                        {
-                        	contador=contador-1;
-                        }
+                         if (mov[contador-1]==0)
+                         {
+                            contador=contador-1;
+                         }
                     }
                     else
                     {
@@ -172,7 +210,7 @@ public class contaBancaria {
                         mov[contador-1]= read.nextDouble();
                         if (mov[contador-1]==0)
                         {
-                        	contador=contador-1;
+                            contador=contador-1;
                         }
                         else if(mov[contador-1]>saldo)
                         {
@@ -180,7 +218,6 @@ public class contaBancaria {
                             {
                                 System.out.println("Saldo da conta abaixo do valor solicitado. Deseja usar seu limite especial?: ");
                                 pergunta=read.next().toUpperCase().charAt(0);
-                    
                                 
                                 if (pergunta=='S')
                                 {
@@ -214,7 +251,7 @@ public class contaBancaria {
                                         saldo= ((saldo+pergunta2)-mov[contador-1]); 
                                         saldoLimite=(saldoLimite-pergunta2);
                                     }
-                                    else
+                                    else 
                                     {
                                         saldoLimite=(saldoLimite-(mov[contador-1]-saldo));
                                         saldo=0;
@@ -222,7 +259,7 @@ public class contaBancaria {
                                 }
                                 else
                                 {
-                                	contador=contador-1;
+                                    contador=contador-1;
                                 }
                             }
                             else
@@ -247,7 +284,8 @@ public class contaBancaria {
                         System.out.println("Você atingiu o limite de 10 movimentações diarias!");
                     }
                 }while(contador<10 & pergunta=='S');
-                
+                System.out.println("Fim de programa!");
+                return; 
             }
             
             char pergunta;
@@ -273,31 +311,31 @@ public class contaBancaria {
                 {
                     
                     contador++;
-                    System.out.println("Movimentação "+contador+"º de 10 para o dia.");
+                    System.out.println("\nMovimentação "+contador+"º de 10 para o dia.");
                     
-                    System.out.println("Qual movimentação deseja fazer? C - Credito ou D - Debito.");
+                    System.out.println("\nQual movimentação deseja fazer? C - Credito ou D - Debito.");
                     movimentacao= read.next().toUpperCase().charAt(0);
                     
                     if (movimentacao=='C')
                     {
-                        System.out.println("Entre com o valor que deseja depositar: ");
+                        System.out.println("\nEntre com o valor que deseja depositar: ");
                         credito= read.nextDouble();
                         saldoContaCorrente=saldoContaCorrente+credito;
                     }
                     else if (movimentacao=='D')
                     {
-                        System.out.println("Entre com o valor que deseja retirar: ");
+                        System.out.println("\nEntre com o valor que deseja retirar: ");
                         debito = read.nextDouble();
                         saldoContaCorrente=saldoContaCorrente-debito;
                     }
                     else
                     {
-                        System.out.println("ERROR!!! Entre com  C - Credito ou D - Debito. ");
+                        System.out.println("\nERROR!!! Entre com  C - Credito ou D - Debito. ");
                         contador=contador-1;
                     }
                     
                     
-                    System.out.println("DESEJA FAZER OUTRA MOVIMENTAÇÃO? ");
+                    System.out.println("\nDESEJA FAZER OUTRA MOVIMENTAÇÃO? ");
                     resposta1=  read.next().toUpperCase().charAt(0);
                 }while(contador<10 && resposta1=='S');
             
@@ -307,26 +345,27 @@ public class contaBancaria {
                     if (saldoContaCorrente<0)
                     {
                         saldoContaCorrente=0.0;
-                        System.out.print("Saldo Insuficiente!");
+                        System.out.print("\nSaldo Insuficiente!");
                         
                     }
                         //há saldo na conta?
                     if (saldoContaCorrente>=quantiaAsacar)
                     {
-                        System.out.println("O saldo atual: "+saldoContaCorrente);
+                        System.out.println("\nO saldo atual: "+saldoContaCorrente);
                         saldoContaCorrente-=quantiaAsacar;
                         
                     }
                     //caso não tenha saldo na conta
                     else
                     {
-                        System.out.println("Você não possui valor para essa transação!");
+                        System.out.println("\nVocê não possui valor para essa transação!");
                     }
-                    
+                    System.out.println("Fim de programa!");
+                    return;  
             }
         }while(menuOpcao != 4);
         {
-            System.out.println("Opção Invalida");
+            System.out.println("\nOpção Invalida");
         }
     }
 }
