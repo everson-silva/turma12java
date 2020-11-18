@@ -7,13 +7,7 @@ public class Pessoa {
 		public int anoNascimento;
 		public String sobrenome;
 		public int idade;
-		public int codigoCliente;
 		
-		public void codigoCliente() {
-			
-			this.codigoCliente= 100 ;
-			
-		}
 		
 		//construtor
 		public Pessoa() //construtor padrão
