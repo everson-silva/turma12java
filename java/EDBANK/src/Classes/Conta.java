@@ -19,6 +19,8 @@ public class Conta {
 		this.numero=numero;
 		this.cpf_cnpj=cpf_cnpj;
 	}
+	
+	//encapsulamento
 	public int getNumero() {
 		return numero;
 	}
@@ -35,6 +37,7 @@ public class Conta {
 		return saldo;
 	}
 	
+	//metodos
 	public void debitar(double debito) 
 	{
 		this.saldo=this.saldo-debito;

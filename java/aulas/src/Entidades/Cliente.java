@@ -1,7 +1,7 @@
 package Entidades;
 
 public class Cliente {
-	public String nome;
+	/*public String nome;
 	public char genero;
 	public int anoNascimento;
 	public String sobrenome;
@@ -24,6 +24,6 @@ public class Cliente {
 	public void codigoCliente() {
 		
 		this.codigoCliente= 100 ;
-		
-	}
+	
+	}*/
 }
