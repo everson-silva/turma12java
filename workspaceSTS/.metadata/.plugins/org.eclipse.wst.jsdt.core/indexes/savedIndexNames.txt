@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\Users\evers\Desktop\turma12java\workspaceSTS\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+848991236.index
+2462233801.index
+2943877466.index
+672205645.index
+3561320024.index
