@@ -2,7 +2,6 @@
 <aop-reference-model>
 <aop-project name="FULL"/>
 <aop-project name="primeiraAplicacaoFull"/>
-<aop-project name="SeguracaBlogPessoal"/>
 <aop-project name="projeto1"/>
 <aop-project name="projeto3"/>
 <aop-project name="Atividade_2_Spring-boot-1"/>
